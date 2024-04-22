@@ -6,4 +6,21 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class RegexRomanNumbers {
+    Map<String,String> regularExpresions = new HashMap<>();
+    private void initRegexCollection() {
+        this.addRegex("grupoSumatorio", "(?<!C)[DM]|(?<!X)[LC](?![DM])|(?<!I)[VX](?![LC])|I(?![VX])");
+        this.addRegex("grupoSustractivo", "(C[DM])|(X[LC])|(I[VX])");
+    }
+
+    private void addRegex(String grupoSumatorio, String s) {
+        regularExpresions.putIfAbsent(grupoSumatorio,s);
+    }
+
+    public Map<String, String> getRegularExpresions() {
+        return regularExpresions;
+    }
+
+    public List<String> getAllExpresions(){
+        return this.getRegularExpresions().values().stream().toList();
+    }
 }

@@ -1,4 +1,4 @@
-package edu.badpals.Test;
+package edu.badpals;
 
 import edu.badpals.RomanNumber;
 import org.junit.jupiter.api.Tag;
