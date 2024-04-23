@@ -7,7 +7,7 @@ public enum RomanSymbols {
 	
 	private int valorDecimal;
 	
-	private RomanSymbols(int valorDecimal){
+	RomanSymbols(int valorDecimal){
 		this.valorDecimal = valorDecimal;
 	}
 	

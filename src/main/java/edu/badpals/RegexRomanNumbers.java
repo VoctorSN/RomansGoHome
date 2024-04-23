@@ -3,7 +3,6 @@ package edu.badpals;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class RegexRomanNumbers {
     Map<String,String> regularExpresions = new HashMap<>();
@@ -20,7 +19,12 @@ public class RegexRomanNumbers {
         return regularExpresions;
     }
 
-    public List<String> getAllExpresions(){
+    public String getRegex(String grupo){
+        return getRegularExpresions().get(grupo);
+    }
+
+    public List<String> getAllRegex(){
+        this.initRegexCollection();
         return this.getRegularExpresions().values().stream().toList();
     }
 }
