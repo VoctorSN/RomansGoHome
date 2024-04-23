@@ -1,5 +1,6 @@
 package edu.badpals;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -7,7 +8,6 @@ public class RomanNumber {
 
     private final String number;
     private short decimal = 0;
-    private RegexRomanNumbers regexRomanNumbers = new RegexRomanNumbers();
 
     RomanNumber(String number){
         this.number = number;
@@ -23,7 +23,7 @@ public class RomanNumber {
     }
 
     private void calculateDecimal() {
-        for (String regularExpresion : regexRomanNumbers.getAllRegex()){
+        for (String regularExpresion : RegexRomanNumbers.getAllRegex()){
             Matcher matcher = Pattern.compile(regularExpresion).matcher(this.number);
             updateMatches(matcher);
         }
@@ -44,7 +44,7 @@ public class RomanNumber {
         return getNumber();
     }
 
-    public RegexRomanNumbers getRegexCollection() {
-        return regexRomanNumbers;
+    public List<String> getRegexCollection() {
+        return RegexRomanNumbers.getAllRegex();
     }
 }

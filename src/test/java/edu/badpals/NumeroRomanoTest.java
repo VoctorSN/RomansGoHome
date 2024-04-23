@@ -168,13 +168,13 @@ public class NumeroRomanoTest {
     public void init_regex_collection_test() {
         String testCase = "V";
         numeroRomano = new RomanNumber(testCase);
-        assertEquals(2, numeroRomano.getRegexCollection().getAllRegex().size());
+        assertEquals(2, numeroRomano.getRegexCollection().size());
 
         List<String> expectedRegexList = Arrays.asList("(?<!C)[DM]|(?<!X)[LC](?![DM])|(?<!I)[VX](?![LC])|I(?![VX])", "(C[DM])|(X[LC])|(I[VX])");
-        assertEquals(expectedRegexList, numeroRomano.getRegexCollection().getAllRegex());
+        assertEquals(expectedRegexList, numeroRomano.getRegexCollection());
 
-        assertEquals("(?<!C)[DM]|(?<!X)[LC](?![DM])|(?<!I)[VX](?![LC])|I(?![VX])", numeroRomano.getRegexCollection().getRegex("grupoSumatorio"));
-        assertEquals("(C[DM])|(X[LC])|(I[VX])", numeroRomano.getRegexCollection().getRegex("grupoSustractivo"));
+        assertEquals("(?<!C)[DM]|(?<!X)[LC](?![DM])|(?<!I)[VX](?![LC])|I(?![VX])", RegexRomanNumbers.getRegex("grupoSumatorio"));
+        assertEquals("(C[DM])|(X[LC])|(I[VX])", RegexRomanNumbers.getRegex("grupoSustractivo"));
     }
 
     /**
