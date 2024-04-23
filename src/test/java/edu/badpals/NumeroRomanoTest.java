@@ -1,6 +1,5 @@
 package edu.badpals;
 
-import edu.badpals.RomanNumber;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -20,12 +19,12 @@ public class NumeroRomanoTest {
     /**
      * Grupos sumatorios M, C, X, I
      */
-    
+
     @ParameterizedTest
     @CsvSource({
-        "1000,  M",
-        "2000,  UMMU",
-        "3000,  UMMMU"
+            "1000,  M",
+            "2000,  UMMU",
+            "3000,  UMMMU"
     })
     @Tag("sumatorio")
     public void grupo_M_test(Short decimal, String roman) {
@@ -86,8 +85,8 @@ public class NumeroRomanoTest {
 
     /**
      * Grupos sustractivos
-     * IV(4), IX(9), 
-     * XL(40), XC(90), 
+     * IV(4), IX(9),
+     * XL(40), XC(90),
      * CD(400), CM(900)
      */
 
@@ -110,11 +109,11 @@ public class NumeroRomanoTest {
 
         String testCase = "UXLU";
         numeroRomano = new RomanNumber(testCase);
-        assertEquals(40, numeroRomano.toDecimal());  
+        assertEquals(40, numeroRomano.toDecimal());
 
         testCase = "UXCU";
         numeroRomano = new RomanNumber(testCase);
-        assertEquals(90, numeroRomano.toDecimal());        
+        assertEquals(90, numeroRomano.toDecimal());
     }
 
     @Test
@@ -123,11 +122,11 @@ public class NumeroRomanoTest {
 
         String testCase = "UIVU";
         numeroRomano = new RomanNumber(testCase);
-        assertEquals(4, numeroRomano.toDecimal());  
+        assertEquals(4, numeroRomano.toDecimal());
 
         testCase = "UIXU";
         numeroRomano = new RomanNumber(testCase);
-        assertEquals(9, numeroRomano.toDecimal());  
+        assertEquals(9, numeroRomano.toDecimal());
     }
 
     @Test
@@ -184,12 +183,12 @@ public class NumeroRomanoTest {
     @ParameterizedTest
     @Tag("enumerado")
     @CsvSource({
-        "5,   V",
-        "4,   IV",
-        "900, CM"
+            "5,   V",
+            "4,   IV",
+            "900, CM"
     })
     public void valor_decimal_test(Short decimal, String roman) {
-        numeroRomano = new RomanNumber(roman);
-        assertEquals(decimal, numeroRomano.decimalValue(roman));
+        RomanSymbols romanSymbol = RomanSymbols.valueOf(roman);
+        assertEquals(decimal, (short) romanSymbol.getDecimalValue());
     }
 }

@@ -9,7 +9,7 @@ public class RomanNumber {
     private final String number;
     private short decimal = 0;
 
-    RomanNumber(String number){
+    public RomanNumber(String number) {
         this.number = number;
     }
 
@@ -23,19 +23,18 @@ public class RomanNumber {
     }
 
     private void calculateDecimal() {
-        for (String regularExpresion : RegexRomanNumbers.getAllRegex()){
-            Matcher matcher = Pattern.compile(regularExpresion).matcher(this.number);
-            updateMatches(matcher);
+        for (String regularExpresion : RegexRomanNumbers.getAllRegex()) {
+            updateMatches(Pattern.compile(regularExpresion).matcher(this.number));
         }
     }
 
     private void updateMatches(Matcher matcher) {
-        while(matcher.find()){
+        while (matcher.find()) {
             this.decimal += decimalValue(matcher.group());
         }
     }
 
-    public short decimalValue(String romanNumber){
+    private short decimalValue(String romanNumber) {
         return (short) RomanSymbols.valueOf(romanNumber).getDecimalValue();
     }
 
