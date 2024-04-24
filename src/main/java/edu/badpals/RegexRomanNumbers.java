@@ -1,26 +1,21 @@
 package edu.badpals;
 
-import javax.swing.plaf.synth.SynthOptionPaneUI;
-import java.sql.SQLOutput;
-import java.util.List;
-import java.util.Map;
+import java.util.regex.Pattern;
 
 public class RegexRomanNumbers {
-    static final Map<String, String> regularExpresions = Map.of(
-            "grupoSumatorio", "(?<!C)[DM]|(?<!X)[LC](?![DM])|(?<!I)[VX](?![LC])|I(?![VX])",
-            "grupoSustractivo", "(C[DM])|(X[LC])|(I[VX])"
-    );
 
-    public static Map<String, String> getRegularExpresions() {
-        return regularExpresions;
+    static final String decimalRegex = "(?<!C)[DM]|(?<!X)[LC](?![DM])|(?<!I)[VX](?![LC])|I(?![VX])|(C[DM])|(X[LC])|(I[VX])";
+    static final String validatorRegex = "^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$";
+
+    public static String getDecimalRegex() {
+        return decimalRegex;
     }
 
-    public static String getRegex(String grupo) {
-        return getRegularExpresions().get(grupo);
+    public static String getValidatorRegex() {
+        return validatorRegex;
     }
 
-    public static List<String> getAllRegex() {
-        return getRegularExpresions().values().stream().sorted().toList();
+    static boolean validate(String number){
+        return Pattern.compile(RegexRomanNumbers.getValidatorRegex()).matcher(number).matches();
     }
-
 }

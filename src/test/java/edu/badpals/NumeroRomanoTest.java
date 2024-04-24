@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -23,8 +21,8 @@ public class NumeroRomanoTest {
     @ParameterizedTest
     @CsvSource({
             "1000,  M",
-            "2000,  UMMU",
-            "3000,  UMMMU"
+            "2000,  MM",
+            "3000,  MMM"
     })
     @Tag("sumatorio")
     public void grupo_M_test(Short decimal, String roman) {
@@ -45,7 +43,7 @@ public class NumeroRomanoTest {
     @Tag("sumatorio")
     public void tres_repeticiones_C_test() {
 
-        String testCase = "UMMMUCCCU";
+        String testCase = "MMMCCC";
         numeroRomano = new RomanNumber(testCase);
         assertEquals(3300, numeroRomano.toDecimal());
     }
@@ -54,7 +52,7 @@ public class NumeroRomanoTest {
     @Tag("sumatorio")
     public void tres_repeticiones_X_test() {
 
-        String testCase = "UMMMUXXXU";
+        String testCase = "MMMXXX";
         numeroRomano = new RomanNumber(testCase);
 
         assertEquals(3030, numeroRomano.toDecimal());
@@ -64,7 +62,7 @@ public class NumeroRomanoTest {
     @Tag("sumatorio")
     public void tres_repeticiones_I_test() {
 
-        String testCase = "UMMMUIIIU";
+        String testCase = "MMMIII";
         numeroRomano = new RomanNumber(testCase);
 
         assertEquals(3003, numeroRomano.toDecimal());
@@ -74,11 +72,11 @@ public class NumeroRomanoTest {
     @Tag("sumatorio")
     public void una_D_test() {
 
-        String testCase = "UMMMUDUIIIU";
+        String testCase = "MMMDIII";
         numeroRomano = new RomanNumber(testCase);
         assertEquals(3503, numeroRomano.toDecimal());
 
-        testCase = "MMMUCDUIIIU";
+        testCase = "MMMCDIII";
         numeroRomano = new RomanNumber(testCase);
         assertNotEquals(3503, numeroRomano.toDecimal());
     }
@@ -94,11 +92,11 @@ public class NumeroRomanoTest {
     @Tag("sustractivo")
     public void grupo_C_DM_test() {
 
-        String testCase = "UCDU";
+        String testCase = "CD";
         numeroRomano = new RomanNumber(testCase);
         assertEquals(400, numeroRomano.toDecimal());
 
-        testCase = "UCMU";
+        testCase = "CM";
         numeroRomano = new RomanNumber(testCase);
         assertEquals(900, numeroRomano.toDecimal());
     }
@@ -107,11 +105,11 @@ public class NumeroRomanoTest {
     @Tag("sustractivo")
     public void grupo_X_LC_test() {
 
-        String testCase = "UXLU";
+        String testCase = "XL";
         numeroRomano = new RomanNumber(testCase);
         assertEquals(40, numeroRomano.toDecimal());
 
-        testCase = "UXCU";
+        testCase = "XC";
         numeroRomano = new RomanNumber(testCase);
         assertEquals(90, numeroRomano.toDecimal());
     }
@@ -120,11 +118,11 @@ public class NumeroRomanoTest {
     @Tag("sustractivo")
     public void grupo_I_VX_test() {
 
-        String testCase = "UIVU";
+        String testCase = "IV";
         numeroRomano = new RomanNumber(testCase);
         assertEquals(4, numeroRomano.toDecimal());
 
-        testCase = "UIXU";
+        testCase = "IX";
         numeroRomano = new RomanNumber(testCase);
         assertEquals(9, numeroRomano.toDecimal());
     }
@@ -157,24 +155,6 @@ public class NumeroRomanoTest {
         assertEquals(439, numeroRomano.toDecimal());
     }
 
-    /**
-     * Test de la coleccion de
-     * expresiones regulares
-     */
-
-    @Test
-    @Tag("regex")
-    public void init_regex_collection_test() {
-        String testCase = "V";
-        numeroRomano = new RomanNumber(testCase);
-        assertEquals(2, numeroRomano.getRegexCollection().size());
-
-        List<String> expectedRegexList = Arrays.asList("(?<!C)[DM]|(?<!X)[LC](?![DM])|(?<!I)[VX](?![LC])|I(?![VX])", "(C[DM])|(X[LC])|(I[VX])");
-        assertEquals(expectedRegexList, numeroRomano.getRegexCollection());
-
-        assertEquals("(?<!C)[DM]|(?<!X)[LC](?![DM])|(?<!I)[VX](?![LC])|I(?![VX])", RegexRomanNumbers.getRegex("grupoSumatorio"));
-        assertEquals("(C[DM])|(X[LC])|(I[VX])", RegexRomanNumbers.getRegex("grupoSustractivo"));
-    }
 
     /**
      * Test del tipo enumerado
