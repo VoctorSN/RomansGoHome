@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 public class RomanNumber {
 
     private final String number;
-    private short decimal = 0;
+    private final Integer decimal;
     private static final Map<String,Integer> LETTERS = new LinkedHashMap<>();
 
     static {
@@ -29,19 +29,23 @@ public class RomanNumber {
 
     public RomanNumber(String number) {
         this.number = number;
+        this.decimal = toDecimal();
+    }
+
+    public RomanNumber(Integer decimal) {
+        this.decimal = decimal;
+        this.number = this.getRoman();
     }
 
     public String getNumber() {
         return number;
     }
 
-    public short toDecimal() {
+    public Integer toDecimal() {
          if (RegexRomanNumbers.validate(this.number)){
-             this.decimal = 0;
-             this.calculateDecimal();
-             return this.decimal;
+             return calculateDecimal();
          }
-         return (short) 0;
+         return 0;
     }
 
     @Override
@@ -54,37 +58,40 @@ public class RomanNumber {
     }
 
     public RomanNumber suma(RomanNumber romanNumber){
-        int suma = romanNumber.toDecimal() + this.toDecimal();
-        return new RomanNumber(RomanNumber.toRoman(suma));
+        return new RomanNumber(RomanNumber.toRoman(romanNumber.toDecimal() + this.toDecimal()));
     }
 
     public static RomanNumber suma(RomanNumber n1, RomanNumber n2){
-        int suma = n1.toDecimal() + n2.toDecimal();
-        return new RomanNumber(RomanNumber.toRoman(suma));
+        return new RomanNumber(RomanNumber.toRoman(n1.toDecimal() + n2.toDecimal()));
     }
 
     public static String toRoman(int number) {
         StringBuilder resoult = new StringBuilder();
         for(Map.Entry<String,Integer> entry : LETTERS.entrySet()){
-            while (number >= entry.getValue()){
-                number -= entry.getValue();
+            for (; number >= entry.getValue() ; number -= entry.getValue()){
                 resoult.append(entry.getKey());
             }
         }
         return resoult.toString();
     }
 
-    private void calculateDecimal() {
-        updateMatches(Pattern.compile(RegexRomanNumbers.getDecimalRegex()).matcher(this.number));
+    private String getRoman() {
+        return toRoman(this.decimal);
     }
 
-    private void updateMatches(Matcher matcher) {
+    private int calculateDecimal() {
+        return updateMatches(Pattern.compile(RegexRomanNumbers.getDecimalRegex()).matcher(this.number));
+    }
+
+    private int updateMatches(Matcher matcher) {
+        int decimal = 0;
         while (matcher.find()) {
-            this.decimal += decimalValue(matcher.group());
+            decimal += decimalValue(matcher.group());
         }
+        return decimal;
     }
 
-    private short decimalValue(String romanNumber) {
-        return (short) RomanSymbols.valueOf(romanNumber).getDecimalValue();
+    private Integer decimalValue(String romanNumber) {
+        return RomanSymbols.valueOf(romanNumber).getDecimalValue();
     }
 }

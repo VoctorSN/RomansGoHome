@@ -25,7 +25,7 @@ public class NumeroRomanoTest {
             "3000,  MMM"
     })
     @Tag("sumatorio")
-    public void grupo_M_test(Short decimal, String roman) {
+    public void grupo_M_test(int decimal, String roman) {
 
         //String testCase = "M";
         numeroRomano = new RomanNumber(roman);

@@ -26,5 +26,3 @@ G.idea/sonarlint/issuestore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec,8\6\86
 RomansGoHome.iml,0\9\09d4f5a1041a19efff476f3ccaccaa2758ee733a
 Å
 Q.idea/sonarlint/securityhotspotstore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec,2\c\2cabb939da04d3de3a200bf2b575690e1a16316d
-c
-3src/main/java/edu/badpals/ValidatorRomanNumber.java,1\c\1cf5648f6b55e59054397840e9d6c06b54f183f0

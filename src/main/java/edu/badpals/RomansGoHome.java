@@ -12,8 +12,8 @@ public class RomansGoHome {
                         444, //CDXLIV
                         439// CDXXXIX
                 )
-                .map(RomanNumber::toRoman)
-                .forEach(n -> System.out.println(n + " = " + new RomanNumber(n).toDecimal()));
+                .map(RomanNumber::new)
+                .forEach(n -> System.out.println(n + " = " + n.toDecimal()));
         System.out.print("\n");
         Stream.of("MMMDCCCLXXXVIII", // 3888
                         "MMDCCLXXVII",  // 2777
@@ -30,7 +30,6 @@ public class RomansGoHome {
                         444, //CDXLIV
                         439// CDXXXIX
                 )
-                .map(RomanNumber::toRoman)
                 .map(RomanNumber::new)
                 .forEach(n -> System.out.println(n.toString()  + " + " + romanNumber.toString() + " = " + n.suma(romanNumber) + "\n"
                                              +   n.toDecimal() + " + " + romanNumber.toDecimal() + " = " + n.suma(romanNumber).toDecimal()));
