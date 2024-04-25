@@ -22,5 +22,18 @@ public class RomansGoHome {
                 )
                 .map(RomanNumber::new)
                 .forEach(n -> System.out.println(n.toString() + " = " + n.toDecimal()));
+        System.out.print("\n");
+        List<RomanNumber> numerosASumar = Stream.of("MMMDCCCLXXXVIII","MMDCCLXXVII","CDXLIV","CDXXXIX").map(RomanNumber::new).toList();
+        for (RomanNumber romanNumber : numerosASumar){
+            Stream.of(3888, // MMMDCCCLXXXVIII
+                        2777,  // MMDCCLXXVII
+                        444, //CDXLIV
+                        439// CDXXXIX
+                )
+                .map(RomanNumber::toRoman)
+                .map(RomanNumber::new)
+                .forEach(n -> System.out.println(n.toString()  + " + " + romanNumber.toString() + " = " + n.suma(romanNumber) + "\n"
+                                             +   n.toDecimal() + " + " + romanNumber.toDecimal() + " = " + n.suma(romanNumber).toDecimal()));
+        }
     }
 }

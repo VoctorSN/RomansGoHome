@@ -1,6 +1,5 @@
 package edu.badpals;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -38,6 +37,7 @@ public class RomanNumber {
 
     public short toDecimal() {
          if (RegexRomanNumbers.validate(this.number)){
+             this.decimal = 0;
              this.calculateDecimal();
              return this.decimal;
          }
@@ -53,8 +53,13 @@ public class RomanNumber {
         return RegexRomanNumbers.getDecimalRegex();
     }
 
-    public RomanNumber Suma(RomanNumber romanNumber){
+    public RomanNumber suma(RomanNumber romanNumber){
         int suma = romanNumber.toDecimal() + this.toDecimal();
+        return new RomanNumber(RomanNumber.toRoman(suma));
+    }
+
+    public static RomanNumber suma(RomanNumber n1, RomanNumber n2){
+        int suma = n1.toDecimal() + n2.toDecimal();
         return new RomanNumber(RomanNumber.toRoman(suma));
     }
 
